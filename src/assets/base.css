@@ -1,74 +1,122 @@
-/* color palette from <https://github.com/vuejs/theme> */
-:root {
-  --vt-c-white: #ffffff;
-  --vt-c-white-soft: #f8f8f8;
-  --vt-c-white-mute: #f2f2f2;
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
 
-  --vt-c-black: #181818;
-  --vt-c-black-soft: #222222;
-  --vt-c-black-mute: #282828;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
-  --vt-c-indigo: #2c3e50;
-
-  --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
-  --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
-  --vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);
-  --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
-
-  --vt-c-text-light-1: var(--vt-c-indigo);
-  --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
-  --vt-c-text-dark-1: var(--vt-c-white);
-  --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+.fs-comfortaa{
+  font-family: 'Comfortaa', cursive;
+}
+.text-500{
+  font-weight: 500;
+}
+.text-700{
+  font-weight: 700;
+}
+.text-600{
+  font-weight: 600;
 }
 
-/* semantic color variables for this project */
-:root {
-  --color-background: var(--vt-c-white);
-  --color-background-soft: var(--vt-c-white-soft);
-  --color-background-mute: var(--vt-c-white-mute);
-
-  --color-border: var(--vt-c-divider-light-2);
-  --color-border-hover: var(--vt-c-divider-light-1);
-
-  --color-heading: var(--vt-c-text-light-1);
-  --color-text: var(--vt-c-text-light-1);
-
-  --section-gap: 160px;
+.fs-OpenSans{
+  font-family: 'Open Sans', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: var(--vt-c-black);
-    --color-background-soft: var(--vt-c-black-soft);
-    --color-background-mute: var(--vt-c-black-mute);
-
-    --color-border: var(--vt-c-divider-dark-2);
-    --color-border-hover: var(--vt-c-divider-dark-1);
-
-    --color-heading: var(--vt-c-text-dark-1);
-    --color-text: var(--vt-c-text-dark-2);
-  }
+.text-primary{
+  color: #483698 !important;
+}
+.bg-primary{
+  background-color: #483698 !important;
+}
+.bd-primary{
+  border: 1px solid #483698 !important;
+  
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  position: relative;
-  font-weight: normal;
+/* --------------------------------------- */
+
+.text-secondary{
+  color: #ffff !important;
+}
+.bg-secondary{
+  background-color: #ffff !important;
+}
+.bd-secondary{
+  border: 1px solid #ffff !important;
+
+}
+.text-secondary-1{
+  color: #f9f9f9 !important;
+}
+.bg-secondary-1{
+  background-color: #f9f9f9 !important;
+}
+.bd-secondary-1{
+  border: 1px solid #f9f9f9 !important;
+
 }
 
-body {
-  min-height: 100vh;
-  color: var(--color-text);
-  background: var(--color-background);
-  transition: color 0.5s, background-color 0.5s;
-  line-height: 1.6;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  font-size: 15px;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.text-secondary-4{
+  color: #8a8a8a !important;
+}
+.bg-secondary-4{
+  background-color: #8a8a8a !important;
+}
+.bd-secondary-4{
+  border: 1px solid #8a8a8a !important;
+
+}
+
+
+.text-secondary-7{
+  color: #282828 !important;
+}
+.bg-secondary-7{
+  background-color: #282828 !important;
+}
+.bd-secondary-7{
+  border: 1px solid #282828 !important;
+
+}
+/* --------------------------------------- */
+
+.text-terciary{
+  color: #ffe766 !important;
+}
+.bg-terciary{
+  background-color: #ffe766 !important;
+}
+.bd-terciary{
+  border: 1px solid #ffe766 !important;
+}
+
+.text-terciary-1{
+  color: #fbde40 !important;
+}
+.bg-terciary-1{
+  background-color: #fbde40 !important;
+}
+.bd-terciary-1{
+  border: 1px solid #fbde40 !important;
+}
+
+/* --------------------------------------- */
+
+.text-suport{
+  color: #dc3545 !important;
+}
+.bg-suport{
+  background-color: #dc3545 !important;
+}
+.bd-suport{
+  border: 1px solid #dc3545 !important;
+}
+/* --------------------------------------- */
+
+.bdr-5{
+  border-radius: 5px;
+}
+
+.w-85{
+  width: 85%;
+}
+.w-105{
+  width: 105%;
 }
