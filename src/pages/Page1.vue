@@ -1,5 +1,5 @@
 <template>
-  <main
+  <div
     class="bg-secondary m-auto ps-5 py-5 mt-5 "
     style="max-width:900px;"
   >
@@ -126,7 +126,7 @@
     <Buttom
       mensagem="Proximo"
       id="submit"
-      v-on:click="onsubmit"
+      
     />
     </form>
     <img
@@ -135,11 +135,12 @@
       class="img"
     >
       </div>
-      </main>
+  </div>
 
 </template>
 
 <script>
+import Page2 from "./Page2.vue";
 import Buttom from "../components/Buttom.vue";
 import api from "../services/api.js";
 
@@ -147,6 +148,11 @@ export default {
   name: "page1",
   components: {
     Buttom,
+  },
+
+  props:{
+    buttom : '',
+    action : ''
   },
 
   data() {
@@ -163,6 +169,16 @@ export default {
     };
   },
 
+  
+
+  created() {
+    this.steps = [
+      { title: "pagina1" },
+      { title: "pagina2" },
+      { title: "pagina3" },
+    ];
+  },
+
   mounted() {
     //buca por todos os estados
     api.estado().then(res => {
@@ -175,6 +191,7 @@ export default {
   },
 
   methods: {
+
     estadoselect() {
       //ativa o input caso o estado ja esteja selecionado
       if (this.input_estado > 0) {
@@ -246,44 +263,17 @@ export default {
         document.getElementById("erroCell").innerText = "";
       }
     },
-
     onsubmit(e) {
-      e.preventDefault();
-      console.log([this.nome, this.cpf, this.cidadeselect]);
+        e.preventDefault();
+        console.log([this.nome, this.cpf, this.cidadeselect]);
     },
+
+    
   },
 };
 </script>
 
 
 <style scoped>
-@media (max-width: 650px) {
-  .img {
-    display: none;
-    width: 0px;
-  }
-  .mobile {
-    width: 90%;
-  }
-}
 
-main {
-  border-radius: 10px;
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.432);
-}
-.img {
-  width: 55%;
-}
-select:focus,
-input:focus,
-select:focus {
-  box-shadow: 0 0 0 0;
-  border: 1px solid black;
-  outline: 0;
-}
-.mensageErro {
-  margin-top: -20px;
-  color: red;
-  font-weight: 500;
-}
 </style>

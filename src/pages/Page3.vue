@@ -1,5 +1,5 @@
 <template>
-    <main
+    <div
         class="m-auto"
         style="max-width:950px"
     >
@@ -55,7 +55,7 @@
                         >
             </div>
         </div>
-        </main>
+        </div>
 
 </template>
     

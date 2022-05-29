@@ -11,5 +11,8 @@ export default {
     profissionais:() => {
         return http.get(`profissionais`)
     },
+    especialidades:() => {
+        return http.get(`especialidades`)
+    },
     
 }

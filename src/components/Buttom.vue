@@ -1,6 +1,5 @@
 <template>
     <button
-        type="submit"
         class="btn btn-primary bg-primary mt-3"
     >{{mensagem}}</button>
 </template>
@@ -16,7 +15,7 @@ export default {
 
 <style>
 .btn {
-    border: none;
+  border: none;
   border-radius: 15px;
 }
 </style>
