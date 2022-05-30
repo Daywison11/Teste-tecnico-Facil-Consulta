@@ -132,6 +132,7 @@
         mensagem="Proximo"
         v-on:click="nextpage"
         id="submit"
+        class='border-0'
       />
       </form>
       <img
@@ -325,6 +326,7 @@
             mensagem="Próximo"
             @click="nextpage"
             id="submit2"
+            class='border-0'
           />
           </form>
           <img
@@ -385,13 +387,14 @@
 
                     <Buttom
                       mensagem='CADASTRAR PROFISSIONAL'
-                      class="bg-terciary-1 fs-5 p-1 text-black text-500"
+                      class="bg-terciary-1 fs-5 p-1 text-black text-500 border-0"
                       @click="nextpage"
                     />
 
                     <a
-                      href="#"
+                      @click="editarCad"
                       class="text-decoration-none text-primary fs-5 m-auto mt-2 fs-comfortaa text-700"
+
                     >Edtar cadastro</a>
                       </form>
                       <img
@@ -658,7 +661,7 @@ export default {
 
     cellValidate() {
       this.celular = this.celular.replace(/[^\d]+/g, "");
-      console.log(this.celular);
+      
       if (this.celular.length < 11 || this.celular.length > 11) {
         document.getElementById("submit").disabled = true;
         document.getElementById("input_cell").style.borderColor = "red";
@@ -683,7 +686,6 @@ export default {
         /[^\d]+/g,
         ""
       );
-      console.log(this.input_valorConsulta);
 
       if (this.input_valorConsulta < 3000 || this.input_valorConsulta > 35000) {
         document.getElementById("input_valorConsulta").style.borderColor =
@@ -699,11 +701,9 @@ export default {
         bt.disabled = false;
       }
     },
-
-    onsubmit(e) {
-      e.preventDefault();
-      console.log([this.nome, this.cpf, this.input_cidade]);
-    },
+    editarCad(){
+      this.currentStep = 0
+    }
   },
 };
 </script>
