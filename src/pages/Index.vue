@@ -452,7 +452,7 @@ export default {
   data() {
     return {
       //etapas
-      currentStep: 3,
+      currentStep: 0,
       step: [],
 
       //dados da API
