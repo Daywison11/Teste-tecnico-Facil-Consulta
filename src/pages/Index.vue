@@ -418,7 +418,7 @@
                   <h1 class="fs-comfortaa text-primary text-700 text-center"> Cadastro concluído com sucesso!</h1>
                   <div class="d-flex justify-content-center align-items-center flex-wrap">
                     <img
-                      src="../../public/check_img.jpg"
+                      src="../assets/check_img.jpg"
                       alt="check.png"
                       class="img_check"
                     >
@@ -452,7 +452,7 @@ export default {
   data() {
     return {
       //etapas
-      currentStep: 0,
+      currentStep: 3,
       step: [],
 
       //dados da API
