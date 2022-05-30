@@ -440,6 +440,8 @@
 </template>
 
 <script>
+
+//importa a configuração da API e o component Buttom
 import api from "../services/api.js";
 import Buttom from "../components/Buttom.vue";
 
@@ -451,7 +453,7 @@ export default {
 
   data() {
     return {
-      //etapas
+      //etapas do formulario
       currentStep: 0,
       step: [],
 
@@ -478,6 +480,7 @@ export default {
   },
 
   created() {
+    // titulo das etapas do cadastro
     this.steps = [
       { title: "pagina1" },
       { title: "pagina2" },
@@ -490,16 +493,19 @@ export default {
     api.estado().then(res => {
       this.estado = res.data;
     });
-
+    
+    //busca os proficionais na api
     api.profissionais().then(res => {
       this.profissionais = res.data;
     });
 
+    //busca pelas especialidades disponiveis na api
     api.especialidades().then(res => {
       this.especialidades_API = res.data;
     });
   },
 
+  //dados compotados das estapas do do formulario
   computed: {
     firstIndex() {
       return this.currentStep == 0;
@@ -511,14 +517,19 @@ export default {
   },
 
   methods: {
+    //retorna uma etapa do cadastro
     backpage() {
       if (!this.firstIndex) {
         this.currentStep -= 1;
       }
     },
 
+    //verifica se o formulario esta com algum campo vazio e se nao tiver passa para proxima pagina
     nextpage(e) {
+      //verifica se esta na primeira pagina
       if (this.currentStep == 0) {
+
+        //verifica se todos os campos da pagina 1 estão preenchidos
         if (this.nome == "") {
           document.getElementById("input_name").style.borderColor = "red";
           document.getElementById("erroName").innerText =
@@ -554,7 +565,11 @@ export default {
           this.currentStep += 1;
         }
       }
+
+      //verifica se esta na segunda pagina
       if (this.currentStep == 1) {
+
+        //verifica se todos os campos da pagina 1 estão preenchidos
         if (this.input_especialidade == "") {
           document.getElementById("input_especialidade").style.borderColor =
             "red";
@@ -588,8 +603,12 @@ export default {
       }
     },
 
-    // =====================================
+    //pega o id do estado selecionado e depois busca por todas as cidades disponiveis referente ao estado
     estadoselect() {
+
+      //como o input so passa o valor do id do estado, aqui e um dicionario com nome dos estados
+      //para serem buscados pelo id tambem, [lembrando que tem que subtrair por 1 ja que o array
+      //começa em 0 ]
       var nameForEstadoId = [
         "Rio Grande do Sul",
         "Santa Catarina",
@@ -598,10 +617,11 @@ export default {
         "Mato Grosso",
         "Mato Grosso do Sul",
       ];
-
+      
+      //busca no dicionario o estado escolhido e armazena  no (estadoselected)
       this.estadoselected = nameForEstadoId[this.input_estado - 1];
 
-      //ativa o input caso o estado ja esteja selecionado
+      //ativa o input assim que o estado for escolhido no select
       if (this.input_estado > 0) {
         var cdd = document.getElementById("cidades");
         cdd.disabled = false;
@@ -609,12 +629,13 @@ export default {
         document.getElementById("cidades").disabled = true;
       }
 
-      //Busca por todas as cidades que tem na api comforme o estado selecionado
+      //Busca por todas as cidades que tem na api conforme o estado que foi selecionado
       api.cidade(this.input_estado).then(res => {
         this.cidade = res.data;
       });
     },
-
+    
+    //faz todas as validaçoes do cpf
     cpfvalidate() {
       this.cpf = this.cpf.replace(/[^\d]+/g, "");
 
@@ -633,7 +654,8 @@ export default {
           document.getElementById("inputCpf").style.borderColor = "#483698";
           document.getElementById("errocpf").innerText = "";
         }
-
+        
+        //verifica se o cpf tem menos de 11 digitos
         if (this.cpf.length < 11) {
           document.getElementById("submit").disabled = true;
           document.getElementById("inputCpf").style.borderColor = "red";
@@ -646,7 +668,10 @@ export default {
         contador++;
       }
     },
+
+    // faz as validaões do nome
     nomevalidate() {
+      //verifica se o nome tem menos de 3 caracter ou se tem mais de 48
       if (this.nome.length < 3 || this.nome.length > 48) {
         document.getElementById("submit").disabled = true;
         document.getElementById("input_name").style.borderColor = "red";
@@ -659,9 +684,12 @@ export default {
       }
     },
 
+    //valida o numero do celular
     cellValidate() {
+      //remove todos os espaços, pontos , virgular etc e deixa somente o numero
       this.celular = this.celular.replace(/[^\d]+/g, "");
       
+      //verifica se o numero tem 11 digitos
       if (this.celular.length < 11 || this.celular.length > 11) {
         document.getElementById("submit").disabled = true;
         document.getElementById("input_cell").style.borderColor = "red";
@@ -674,6 +702,8 @@ export default {
       }
     },
 
+    //verifica se a forma de pagamento cedito foi selecionada
+    //se for libera o input radio com o numero de vezes que pode parcelar a consulta
     card_credito() {
       if (this.input_credito == true) {
         document.getElementById("parcelamentos").style.display = "block";
@@ -681,12 +711,19 @@ export default {
         document.getElementById("parcelamentos").style.display = "none";
       }
     },
+
+    //valida o valor da consulta
     valideteValue() {
+      //elimina as virgulas que o v-mask adiciona no valor
       this.input_valorConsulta = this.input_valorConsulta.replace(
         /[^\d]+/g,
         ""
       );
 
+      //como tem as virgular e agente tira elas o valor [30,00] vira 3000  ou seja
+      //tambem e preciso validar dessa forma
+      
+      //nesse caso a validação e se o valor e menor que R$30,00 ou maior que R$350,00
       if (this.input_valorConsulta < 3000 || this.input_valorConsulta > 35000) {
         document.getElementById("input_valorConsulta").style.borderColor =
           "red";
@@ -701,6 +738,9 @@ export default {
         bt.disabled = false;
       }
     },
+
+    //ao clicar em editar cadastro na ultima etapa
+    // retorna o usuario para a primeira pagina
     editarCad(){
       this.currentStep = 0
     }
